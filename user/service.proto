@@ -1,0 +1,36 @@
+syntax = "proto3";
+option go_package = "proto/user";
+package user;
+
+service User {
+  rpc SignUp (NewUserRequest) returns (Responce) {}
+  rpc Autorize (AuthRequest) returns (AuthResponce) {}
+  rpc HiServer (UserRequest) returns (Responce) {}
+}
+
+message NewUserRequest {
+  string name = 1;
+  string password = 2;
+  string email = 3;
+}
+
+message AuthRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message AuthResponce {
+    Responce code = 1;
+    Responce message = 2;
+    string token = 3;
+}
+
+message UserRequest {
+  string meta = 1;
+  string message = 2;
+}
+
+message Responce {
+    int32 code = 1;
+    string message = 2;
+}
